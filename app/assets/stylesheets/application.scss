@@ -1,0 +1,43 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+ @import "bulma" ;  /*bulma railsをインポート */
+
+ .hero.is-info {
+   background-color: #55c550;
+  .title {       /*新規登録画面、ログイン、ログアウト画面のレイアウト*/
+    color: #fff;
+    text-align: center;
+    }
+ }
+ .notification:not(:last-child) { /*通知の無駄なマージンを削った*/
+   margin-bottom: 0;
+ }
+
+.hero.is-success {  /*ユーザー一覧画面のレイアウト*/
+  background-color: #55c500;
+  color: #fff;
+}
+.profile_image {
+  border-radius: 50%;
+} 
+.main-image {
+	height: 340px;
+  width: 440px;
+  margin: 0 auto;
+	background-image: url(flagtw.jpeg);
+	background-repeat: no-repeat;
+	background-size: contain;
+}

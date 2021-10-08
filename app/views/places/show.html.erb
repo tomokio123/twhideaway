@@ -1,0 +1,76 @@
+<section class="hero is-success">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        観光地詳細
+      </h1>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-7">
+        <div class="card">
+          <div class="card-image">
+            <figure class="image is-4by3">
+              <%= attachment_image_tag @place, :image %><!--:fill, 400,400      fallback: "no-image.png" -->
+            </figure>
+          </div>
+          <div class="card-content">
+            <div class="media">
+            </div>
+            <div class="content">
+                <table class="table is-narrow">
+
+                <div class="media-content"> 
+                  <p class="title is-4"><%= @place.title %></p>
+                </div> 
+                
+                <tr>
+                  <th>景観</th>
+                </tr>
+                <tr>
+                  <td><%= simple_format @place.body %></td><!-- simple_format によって改行などの細かいところまで反映できる -->
+                </tr>
+
+                <tr>
+                  <th>行き方</th>
+                </tr>
+                <tr>
+                  <td><%= simple_format @place.howto %></td><!-- simple_format によって改行などの細かいところまで反映できる -->
+                </tr>
+              </table>
+              <% if @place.user.id == current_user.id %>
+                <%= link_to "編集画面へ", edit_place_path(@place), class: "button is-success" %>
+                <!-- ユーザーの編集画面に飛びたいのでedit_place_path。あとはどの場所の編集画面に遷移するかを指定するので(@place)と記述する。-->
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="column is-4">
+        <article class="panel is-link">
+          <p class="panel-heading">
+            By <%= @place.user.username %>
+          </p>
+          <div class="panel-block">
+            <p class="control">
+              <%= @place.user.profile %>
+            </p>
+          </div>
+          <%= link_to user_path(@place.user), class: "panel-block" do %>
+          <!-- どの編集画面に遷移するのか. (@place.user) そしてユーザの詳細画面に遷移なので user_path -->
+            <span class="panel-icon">
+              <i class="fas fa-user" aria-hidden="true"></i>
+            </span>
+            <%= @place.user.username %> さんのページへ <!-- @place に紐づくユーザネームを表示 -->
+          <% end %>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+

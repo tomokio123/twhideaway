@@ -1,0 +1,56 @@
+<section class="hero is-success">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        新規投稿
+      </h1>
+    </div>
+  </div>
+</section>
+
+<!--  バリデーションの時のアナウンスメッセージの記述。-->
+<% if @place.errors.any? %><!-- @placeに何かエラーがありますかってこと -->
+  <div class="notification is-danger">
+    <h2><%= pluralize(@place.errors.count, "error") %> prohibited this object from being saved: not successfully</h2>
+    <!-- bulmaの記法。 pluralizeは単語の複数形か単数系かを判定できる記述。 -->
+    <!-- エラーの数をカウントして@place.errors.count、それに応じて"error"の単語を複数形などに変換する -->
+    <ul>
+      <% @place.errors.full_messages.each do |message| %>
+      <!-- @placeのエラーメッセージを eachにかけて、|message| に入れて一つずつ表示する。-->
+      <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-6">
+        <%= form_for @place do |f| %>
+          <div class="field">
+            <%= f.label :title, "場所名", class: "label" %>
+            <%= f.text_field :title, class: "input" %>
+          </div>
+
+          <div class="field">
+            <%= f.label :body, "景観", class: "label" %>
+            <%= f.text_area :body, class: "textarea" %>
+          </div>
+
+          <div class="field">
+            <%= f.label :howto, "行き方", class: "label" %>
+            <%= f.text_area :howto, class: "textarea" %>
+          </div>
+
+          <div class="field">
+            <%= f.label :image, "風景画像", class: "label" %>
+            <%= f.file_field  :image, class: "input" %>
+          </div>
+
+          <%= f.submit '投稿', class: "button is-success" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>

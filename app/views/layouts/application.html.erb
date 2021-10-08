@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Taiwanplace</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" integrity="sha256-UzFD2WYH2U1dQpKDjjZK72VtPeWP50NoJjd26rnAdUI=" crossorigin="anonymous" />
+     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  </head>
+  <!-- アプリの全てに共通しているviewはここ application.html.erb に書く。ヘッダーもここに書く -->
+  <body>
+    <% if flash[:notice] %>
+      <div class="notification is-info">
+        <p class="notice">成功したみたいですな</p> <!--%= notice %>  -->
+      </div>
+    <% end %>
+    <% if flash[:alert] %>
+      <div class="notification is-danger">
+        <p class="alert">なんかおかしい説</p> <!-- <%= alert %>-->
+      </div>
+    <% end %>
+
+    <nav class="navbar is-warning">
+      <div class="navbar-brand">
+      <!--トップページに戻ってくるリンクを作る > root_path(〇〇_pathとは名前付きパスという) -->
+        <%= link_to root_path, class: "navbar-item" do %>
+          <h1 class="title is-4" style="font-family: fantasy;">TW-HIDEAWAY</h1>
+        <% end %>
+        <div class="navbar-burger burger" data-target="navbarExampleTransparentExample">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+
+      <!-- link_to "??", path~~ ,class:"**" って感じでリンクを作っていこう -->
+      <% if user_signed_in? %><!-- user_signed_in?は、ユーザーがログインしているかどうかを判断してくれる便利な記述方法！！ -->
+        <div id="navbarExampleTransparentExample" class="navbar-menu">
+
+          <div class="navbar-item">
+            <%= link_to "観光地一覧", places_path, class: "navbar-item button is-warning is-light" %>
+          </div>
+          <div class="navbar-item">
+            <%= link_to "新規投稿", new_place_path, class: "navbar-item button is-warning is-light" %>
+          </div>
+
+          <div class="navbar-end">
+            <div class="navbar-item">
+              <div class="navbar-item">
+                <div class="field is-grouped">
+                  <p class="control">
+                    <%= link_to "ユーザー", users_path, class: "navbar-item button is-warning is-light" %>
+                  </p>
+                  <p class="control">
+                    <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "button is-warning is-light" %>
+                  </p>
+                  <p class="control">
+                    <%= link_to "マイページ", user_path(current_user), class: "button is-warning is-light" %>
+                    <!-- user_path 一人の詳細画面に行きたい。-->
+                    <!-- (current_user)でログインしてる人のマイページへとばす-->
+                  </p>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      <% else %>
+      <div id="navbarExampleTransparentExample" class="navbar-menu">
+
+          <div class="navbar-item">
+            <%= link_to "観光地一覧", places_path, class: "navbar-item button is-warning is-light" %>
+          </div>
+          <div class="navbar-item">
+            <%= link_to "ユーザー", users_path, class: "navbar-item button is-warning is-light" %>
+          </div>
+
+          <div class="navbar-end">
+            <div class="navbar-item">
+              <div class="field is-grouped">
+                <p class="control">
+                  <%= link_to "ログイン", new_user_session_path, class: "button is-warning is-light" %>
+                </p>
+                <p class="control">
+                  <%= link_to "新規登録", new_user_registration_path, class: "button is-warning is-light" %>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </nav>
+    <%= yield %>
+  </body>
+</html>

@@ -1,0 +1,16 @@
+current directory: /Users/fukuyamatomoki/taiwanplace/vendor/bundle/ruby/3.0.0/gems/unf_ext-0.0.8/ext/unf_ext
+/Users/fukuyamatomoki/.rbenv/versions/3.0.2/bin/ruby -I /Users/fukuyamatomoki/.rbenv/versions/3.0.2/lib/ruby/3.0.0 -r ./siteconf20211003-5401-4gsolk.rb extconf.rb
+checking for -lstdc++... yes
+creating Makefile
+
+current directory: /Users/fukuyamatomoki/taiwanplace/vendor/bundle/ruby/3.0.0/gems/unf_ext-0.0.8/ext/unf_ext
+make DESTDIR\= clean
+
+current directory: /Users/fukuyamatomoki/taiwanplace/vendor/bundle/ruby/3.0.0/gems/unf_ext-0.0.8/ext/unf_ext
+make DESTDIR\=
+compiling unf.cc
+linking shared-object unf_ext.bundle
+
+current directory: /Users/fukuyamatomoki/taiwanplace/vendor/bundle/ruby/3.0.0/gems/unf_ext-0.0.8/ext/unf_ext
+make DESTDIR\= install
+/usr/bin/install -c -m 0755 unf_ext.bundle ./.gem.20211003-5401-7la9hm
