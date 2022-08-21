@@ -48,7 +48,7 @@ class PlacesController < ApplicationController
    def destroy
     place = Place.find(params[:id]) #placeの削除するものを選定。
     place.destroy  #削除
-    redirect_to places_path #placeの一覧画面に遷移
+    redirect_to place_path(place.user), notice: "観光地を削除しました。" #placeの一覧画面に遷移
   end
 
   private
